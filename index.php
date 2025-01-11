@@ -29,7 +29,11 @@ function send_notification( $id, $post_obj ) {
     // Armar el mensaje
     $msg = 'Se ha publicado un nuevo post: ';
     $msg .= '<strong>' . esc_html( $post_obj->post_title ) . '</strong><br>';
-    $msg .= '<p>' . esc_html( wp_trim_words( $post_obj->post_content, 20, '...' ) ) . '</p>'; // Muestra solo un resumen.
+    $msg .= '<p>' . esc_html( wp_trim_words( $post_obj->post_content, 20, '...' ) ) . '</p>'; 
+    $msg .= '<p>' . esc_html( wp_trim_words( $post_obj->post_author, 20, '...' ) ) . '</p>'; 
+    $msg .= '<p>' . esc_html( wp_trim_words( $post_obj->post_date, 20, '...' ) ) . '</p>'; 
+    $msg .= '<p>' . esc_html( wp_trim_words( $post_obj->post_status, 20, '...' ) ) . '</p>'; 
+
 
     // Guardar el mensaje en las opciones de WordPress
     update_option( 'mi_plugin_notificacion', $msg );
