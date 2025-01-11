@@ -11,7 +11,7 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  */
 
-add_shortcode( "mi", function($atts, $content){
+add_shortcode( "video", function($atts, $content){
 	$id = $atts['id'];
 	return '
     <div class="responsiveContent">
