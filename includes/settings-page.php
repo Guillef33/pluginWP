@@ -57,7 +57,13 @@ function ml_render_settings_page() {
             echo "<p style='color: red;'>Error: No se pudo generar la URL de autenticación.</p>";
         }
         ?>
-           
+
+    <div>
+        <a href="<?php echo esc_url( admin_url( 'admin.php?page=ml-admin' ) ); ?>" class="button button-primary">
+            Ver mi cuenta
+        </a>
+    </div>
+            
       
     </div>
     <?php
