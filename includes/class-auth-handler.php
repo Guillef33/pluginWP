@@ -12,6 +12,8 @@ class Auth_Handler {
             return '';
         }
         $redirect_uri = urlencode( home_url( '' ) );
+
+        dd($redirect_uri);
         // $code_challenge = 'TU_CODE_CHALLENGE';
         // $code_method = 'S256';
 
