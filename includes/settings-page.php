@@ -1,5 +1,6 @@
 <?php
 add_action( 'admin_menu', 'ml_add_settings_page' );
+add_action( 'admin_init', 'ml_register_settings' );
 
 function ml_add_settings_page() {
     add_menu_page(
@@ -9,6 +10,10 @@ function ml_add_settings_page() {
         'ml-auth',
         'ml_render_settings_page'
     );
+}
+function ml_register_settings() {
+    register_setting('ml_settings_group', 'ml_client_id');
+    register_setting('ml_settings_group', 'ml_client_secret');
 }
 
 function ml_render_settings_page() {
