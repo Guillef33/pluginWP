@@ -1,6 +1,5 @@
 <?php
 
-<?php
 class Auth_Handler {
     public static function init() {
         add_action( 'init', [ __CLASS__, 'handle_callback' ] );

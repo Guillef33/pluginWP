@@ -1,6 +1,6 @@
 <?php
 /* Template Name: Mercado Libre Success */
-get_header();
+    get_header();
 ?>
 
 <div class="wrap">
@@ -9,5 +9,5 @@ get_header();
 </div>
 
 <?php
-get_footer();
+    get_footer();
 ?>
