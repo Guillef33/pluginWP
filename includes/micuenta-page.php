@@ -1,5 +1,5 @@
 <?php
-add_action( 'admin_menu', 'ml_add_account_page' );
+// add_action( 'admin_menu', 'ml_add_account_page' );
 add_action( 'admin_init', 'ml_account_page_content' );
 
 function ml_add_account_page() {

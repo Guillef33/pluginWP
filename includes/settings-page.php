@@ -1,5 +1,5 @@
 <?php
-add_action( 'admin_menu', 'ml_add_settings_page' );
+// add_action( 'admin_menu', 'ml_add_settings_page' );
 add_action( 'admin_init', 'ml_register_settings' );
 
 function ml_add_settings_page() {
