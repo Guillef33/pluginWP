@@ -51,9 +51,9 @@ function ml_render_settings_page() {
 
         $auth_url = Auth_Handler::get_auth_url();
         if (!empty($auth_url)) {
-            echo "URL de autenticación: <code>" . esc_url($auth_url) . "</code>";
+            echo "<p><strong>URL de autenticación:</strong> <a href='" . esc_url($auth_url) . "' target='_blank' style='color: #0073aa; text-decoration: underline;'>" . esc_html($auth_url) . "</a></p>";
         } else {
-            echo "Error: No se pudo generar la URL de autenticación.";
+            echo "<p style='color: red;'>Error: No se pudo generar la URL de autenticación.</p>";
         }
         ?>
            
