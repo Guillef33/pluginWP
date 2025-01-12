@@ -43,6 +43,9 @@ function ml_render_settings_page() {
     <div class="wrap">
         <h1>Conectar con Mercado Libre</h1>
         <p>Haz clic en el siguiente botón para autenticarte con Mercado Libre:</p>
+        <a href="<?php echo esc_url( ml_get_auth_link() ); ?>" class="button button-primary">
+            Conectar con Mercado Libre
+        </a>
 
         <?php 
 
@@ -54,9 +57,7 @@ function ml_render_settings_page() {
         }
         ?>
            
-        <a href="<?php echo esc_url( ml_get_auth_link() ); ?>" class="button button-primary">
-            Conectar con Mercado Libre
-        </a>
+      
     </div>
     <?php
 
