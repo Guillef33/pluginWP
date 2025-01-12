@@ -12,8 +12,8 @@ class Auth_Handler {
             return '';
         }
         $redirect_uri = urlencode( home_url( '' ) );
+        echo "URL de autenticación: " . esc_url( "https://auth.mercadolibre.com.ar/authorization?response_type=code&client_id={$app_id}&redirect_uri={$redirect_uri}" );
 
-        dd($redirect_uri);
         // $code_challenge = 'TU_CODE_CHALLENGE';
         // $code_method = 'S256';
 
