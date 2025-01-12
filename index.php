@@ -26,26 +26,28 @@ require_once ML_AUTH_PLUGIN_DIR . 'includes/functions.php';
 require_once ML_AUTH_PLUGIN_DIR . 'includes/settings-page.php';
 require_once ML_AUTH_PLUGIN_DIR . 'includes/micuenta-page.php';
 
-// Agrega la página de configuración y la subpágina "Mi Cuenta".
-// add_action( 'admin_menu', function() {
-// 	add_menu_page(
-// 		__( 'Settings Page', 'ml-auth' ),
-// 		__( 'Settings Page', 'ml-auth' ),
-// 		'manage_options',
-// 		'ml-auth',
-// 		'settings_page_callback',
-// 		'dashicons-admin-generic'
-// 	);
+function mi_plugin_menu() {
+    add_menu_page(
+        'Mercado Libre Props', // Título del menú
+        'ML', // Título corto
+        'manage_options', // Capacidad necesaria
+        'ml-admin', // Slug del menú
+		'ml_render_settings_page', // Función de callback
+        'dashicons-admin-generic', // Icono (usando un dashicon)
+        6 // Posición en el menú
+    );
 
-// 	add_submenu_page(
-// 		'settings-page',
-// 		__( 'Mi Cuenta', 'mi-cuenta-ml' ),
-// 		__( 'Mi Cuenta', 'mi-cuenta-ml' ),
-// 		'manage_options',
-// 		'mi-cuenta-ml',
-// 		'micuenta_page_callback'
-// 	);
-// });
+    add_submenu_page(
+        'Mi Cuenta en ML',            // Título del menú
+        'manage_options',              // Capacidad para acceder
+        'mi-cuenta-ml',               // Slug de la página
+        'ml_account_page_content',    // Función que genera el contenido
+        'dashicons-admin-users',      // Icono para el menú
+        20                            // Orden en el menú
+    );
+}
+add_action( 'admin_menu', 'mi_plugin_menu' );
+
 
 
 // Inicializa el plugin.

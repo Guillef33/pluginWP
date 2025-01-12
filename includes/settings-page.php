@@ -2,16 +2,16 @@
 add_action( 'admin_menu', 'ml_add_settings_page' );
 add_action( 'admin_init', 'ml_register_settings' );
 
-function ml_add_settings_page() {
+// function ml_add_settings_page() {
     
-    add_menu_page(
-        'Mercado Libre Auth',
-        'Mercado Libre',
-        'manage_options',
-        'ml-auth',
-        'ml_render_settings_page'
-    );
-}
+//     add_menu_page(
+//         'Mercado Libre Auth',
+//         'Mercado Libre',
+//         'manage_options',
+//         'ml-auth',
+//         'ml_render_settings_page'
+//     );
+// }
 function ml_register_settings() {
     register_setting('ml_settings_group', 'ml_client_id');
     register_setting('ml_settings_group', 'ml_client_secret');
@@ -57,7 +57,13 @@ function ml_render_settings_page() {
             echo "<p style='color: red;'>Error: No se pudo generar la URL de autenticación.</p>";
         }
         ?>
-           
+
+    <div>
+        <a href="<?php echo esc_url( admin_url( 'admin.php?page=ml-admin' ) ); ?>" class="button button-primary">
+            Ver mi cuenta
+        </a>
+    </div>
+            
       
     </div>
     <?php
