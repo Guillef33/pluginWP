@@ -1,12 +1,12 @@
 <?php
 add_action( 'admin_menu', 'ml_add_account_page' );
-add_action( 'admin_init', 'ml_register_settings' );
+add_action( 'admin_init', 'ml_account_page_content' );
 
 function ml_add_account_page() {
     add_menu_page(
         'Mi Cuenta en Mercado Libre', // Título de la página
         'Mi Cuenta en ML',            // Título del menú
-        'administrator',              // Capacidad para acceder
+        'manage_options',              // Capacidad para acceder
         'mi-cuenta-ml',               // Slug de la página
         'ml_account_page_content',    // Función que genera el contenido
         'dashicons-admin-users',      // Icono para el menú
@@ -14,10 +14,6 @@ function ml_add_account_page() {
     );
 }
 
-function ml_register_settings() {
-    register_setting('ml_settings_group', 'ml_client_id');
-    register_setting('ml_settings_group', 'ml_client_secret');
-}
 
 function ml_account_page_content() {
     // Este es el contenido de la página donde se mostrará la información de Mercado Libre
