@@ -6,8 +6,12 @@ class Auth_Handler {
     }
 
     public static function get_auth_url() {
-        $app_id = 'TU_APP_ID';
-        $redirect_uri = urlencode( home_url( '/mercadolibre-callback/' ) );
+        $app_id = get_option('ml_client_id');
+        if (empty($app_id)) {
+            error_log('Error: El client_id no está configurado en settings-page.php');
+            return '';
+        }
+        $redirect_uri = urlencode( home_url( '' ) );
         // $code_challenge = 'TU_CODE_CHALLENGE';
         // $code_method = 'S256';
 
