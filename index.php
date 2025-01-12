@@ -32,7 +32,7 @@ add_action( 'admin_menu', function() {
 		__( 'Settings Page', 'ml-auth' ),
 		__( 'Settings Page', 'ml-auth' ),
 		'manage_options',
-		'settings-page',
+		'ml-auth',
 		'settings_page_callback',
 		'dashicons-admin-generic'
 	);
@@ -42,7 +42,7 @@ add_action( 'admin_menu', function() {
 		__( 'Mi Cuenta', 'mi-cuenta-ml' ),
 		__( 'Mi Cuenta', 'mi-cuenta-ml' ),
 		'manage_options',
-		'micuenta-page',
+		'mi-cuenta-ml',
 		'micuenta_page_callback'
 	);
 });
