@@ -6,7 +6,6 @@ function ml_add_account_page() {
     add_menu_page(
         'Mi Cuenta en Mercado Libre', // Título de la página
         'Mi Cuenta en ML',            // Título del menú
-        'manage_options',             // Capacidad para acceder
         'mi-cuenta-ml',               // Slug de la página
         'ml_account_page_content',    // Función que genera el contenido
         'dashicons-admin-users',      // Icono para el menú
