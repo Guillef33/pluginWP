@@ -25,6 +25,8 @@ define( 'ML_AUTH_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 require_once ML_AUTH_PLUGIN_DIR . 'includes/class-auth-handler.php';
 require_once ML_AUTH_PLUGIN_DIR . 'includes/functions.php';
 require_once ML_AUTH_PLUGIN_DIR . 'includes/settings-page.php';
+require_once ML_AUTH_PLUGIN_DIR . 'includes/micuenta-page.php';
+
 
 // Inicializa el plugin.
 add_action( 'plugins_loaded', [ 'Auth_Handler', 'init' ] );
