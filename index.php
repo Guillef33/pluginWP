@@ -27,25 +27,25 @@ require_once ML_AUTH_PLUGIN_DIR . 'includes/settings-page.php';
 require_once ML_AUTH_PLUGIN_DIR . 'includes/micuenta-page.php';
 
 // Agrega la página de configuración y la subpágina "Mi Cuenta".
-add_action( 'admin_menu', function() {
-	add_menu_page(
-		__( 'Settings Page', 'ml-auth' ),
-		__( 'Settings Page', 'ml-auth' ),
-		'manage_options',
-		'ml-auth',
-		'settings_page_callback',
-		'dashicons-admin-generic'
-	);
+// add_action( 'admin_menu', function() {
+// 	add_menu_page(
+// 		__( 'Settings Page', 'ml-auth' ),
+// 		__( 'Settings Page', 'ml-auth' ),
+// 		'manage_options',
+// 		'ml-auth',
+// 		'settings_page_callback',
+// 		'dashicons-admin-generic'
+// 	);
 
-	add_submenu_page(
-		'settings-page',
-		__( 'Mi Cuenta', 'mi-cuenta-ml' ),
-		__( 'Mi Cuenta', 'mi-cuenta-ml' ),
-		'manage_options',
-		'mi-cuenta-ml',
-		'micuenta_page_callback'
-	);
-});
+// 	add_submenu_page(
+// 		'settings-page',
+// 		__( 'Mi Cuenta', 'mi-cuenta-ml' ),
+// 		__( 'Mi Cuenta', 'mi-cuenta-ml' ),
+// 		'manage_options',
+// 		'mi-cuenta-ml',
+// 		'micuenta_page_callback'
+// 	);
+// });
 
 
 // Inicializa el plugin.

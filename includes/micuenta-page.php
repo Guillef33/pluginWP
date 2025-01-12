@@ -1,5 +1,5 @@
 <?php
-// add_action( 'admin_menu', 'ml_add_account_page' );
+add_action( 'admin_menu', 'ml_add_account_page' );
 add_action( 'admin_init', 'ml_account_page_content' );
 
 function ml_add_account_page() {
@@ -23,20 +23,20 @@ function ml_account_page_content() {
         <p>Aquí podrás ver los detalles de tu cuenta de Mercado Libre:</p>
 
         <?php
-        // Aquí llamamos a la función que obtiene los datos de la API de Mercado Libre
-        $access_token = get_option('ml_access_token'); // Supongamos que tienes el access_token guardado en la base de datos
+        // // Aquí llamamos a la función que obtiene los datos de la API de Mercado Libre
+        // $access_token = get_option('ml_access_token'); // Supongamos que tienes el access_token guardado en la base de datos
 
-        if ($access_token) {
-            $user_data = MercadoLibreAPI::get_user_data($access_token);
+        // if ($access_token) {
+        //     $user_data = MercadoLibreAPI::get_user_data($access_token);
 
-            if ($user_data) {
-                echo '<pre>' . print_r($user_data, true) . '</pre>';
-            } else {
-                echo '<p>No se pudieron obtener los datos del usuario.</p>';
-            }
-        } else {
-            echo '<p>No tienes un access token válido. Por favor, autentícate primero.</p>';
-        }
+        //     if ($user_data) {
+        //         echo '<pre>' . print_r($user_data, true) . '</pre>';
+        //     } else {
+        //         echo '<p>No se pudieron obtener los datos del usuario.</p>';
+        //     }
+        // } else {
+        //     echo '<p>No tienes un access token válido. Por favor, autentícate primero.</p>';
+        // }
         ?>
 
     </div>
