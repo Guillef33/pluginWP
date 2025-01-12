@@ -1,5 +1,10 @@
 <?php
 
+// Include WordPress core files.
+if ( ! function_exists( 'add_action' ) ) {
+	require_once( ABSPATH . 'wp-load.php' );
+}
+
 /**
  * Plugin Name:       Tus propiedades en Mercado Libre
  * Plugin URI:        https://magnetitte.com/mercado-libre-wordpress/
