@@ -4,7 +4,7 @@
  * Plugin Name:       Tus propiedades en Mercado Libre
  * Plugin URI:        https://magnetitte.com/mercado-libre-wordpress/
  * Description:       Plugin para la publicacion de propiedades en Mercado Libre
- * Version:           0.1
+ * Version:           0.0.1
  * Requires PHP:      7.2
  * Author:            Guillermo Flores
  * Author URI:        https://magnetitte.com/
