@@ -12,10 +12,13 @@ class Auth_Handler {
             return '';
         }
         $redirect_uri = urlencode( home_url( '' ) );
+
+            // Codifica solo el parámetro redirect_uri
+        $redirect_uri_encoded = urlencode( $redirect_uri );
         // $code_challenge = 'TU_CODE_CHALLENGE';
         // $code_method = 'S256';
 
-        return "https://auth.mercadolibre.com.ar/authorization?response_type=code&client_id={$app_id}&redirect_uri={$redirect_uri}";
+        return "https://auth.mercadolibre.com.ar/authorization?response_type=code&client_id={$app_id}&redirect_uri={$redirect_uri_encoded}";
     }
 
     public static function handle_callback() {
