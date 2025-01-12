@@ -29,7 +29,7 @@ class Auth_Handler {
             error_log( "Código recibido: $auth_code" );
 
             // Redirige al usuario a una página personalizada de éxito.
-            wp_redirect( home_url( '/mercadolibre-success/' ) );
+            wp_redirect( home_url( '' ) );
             exit;
         }
     }
