@@ -43,6 +43,17 @@ function ml_render_settings_page() {
     <div class="wrap">
         <h1>Conectar con Mercado Libre</h1>
         <p>Haz clic en el siguiente botón para autenticarte con Mercado Libre:</p>
+
+        <?php 
+
+        $auth_url = Auth_Handler::get_auth_url();
+        if (!empty($auth_url)) {
+            echo "URL de autenticación: <code>" . esc_url($auth_url) . "</code>";
+        } else {
+            echo "Error: No se pudo generar la URL de autenticación.";
+        }
+        ?>
+           
         <a href="<?php echo esc_url( ml_get_auth_link() ); ?>" class="button button-primary">
             Conectar con Mercado Libre
         </a>
