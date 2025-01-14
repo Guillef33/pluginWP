@@ -60,7 +60,7 @@ function custom_plugin_menu() {
 
     // Add submenu page
     add_submenu_page(
-        'my-account',        // Parent slug
+        'Mercado Libre Sync',        // Parent slug
         'My Account',         // Page title
         'Submenu',              // Menu title
         'manage_options',       // Capability
