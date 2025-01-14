@@ -28,7 +28,7 @@ class Auth_Handler {
             // Si obtenemos el token correctamente, puedes almacenarlo o hacer algo con él
             if ($access_token) {
                 error_log("Access Token recibido: $access_token");
-                // Puedes redirigir o hacer algo con el token, por ejemplo guardarlo en la base de datos
+                return $access_token;
             } else {
                 error_log("Error al obtener el Access Token.");
             }
