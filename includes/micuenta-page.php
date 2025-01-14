@@ -23,8 +23,10 @@ function ml_account_page_content() {
         <p>Aquí podrás ver los detalles de tu cuenta de Mercado Libre:</p>
 
         <?php
-        // // Aquí llamamos a la función que obtiene los datos de la API de Mercado Libre
-        // $access_token = get_option('ml_access_token'); // Supongamos que tienes el access_token guardado en la base de datos
+        // Aquí llamamos a la función que obtiene los datos de la API de Mercado Libre
+        $access_token = get_option('ml_access_token'); // Supongamos que tienes el access_token guardado en la base de datos
+
+        echo '<pre>' . print_r($access_token, true) . '</pre>';
 
         // if ($access_token) {
         //     $user_data = MercadoLibreAPI::get_user_data($access_token);
