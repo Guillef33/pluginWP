@@ -69,21 +69,7 @@ function custom_plugin_menu() {
 }
 add_action('admin_menu', 'custom_plugin_menu');
 
-// Function to display the submenu page
-function my_account_page() {?>
-	<div class="wrap">
-			<h1>Mi Cuenta en Mercado Libre</h1>
-			<p>Aquí podrás ver los detalles de tu cuenta de Mercado Libre:</p>
 
-			<?php
-			$access_token = Auth_Handler::handle_callback();
-
-				echo "El Access Token es: $access_token";
-
-			?>
-	</div>
-<?php
-}
 
 // Caso 1 desde 0
 // add_action( 'publish_post', 'send_notification', 10, 2 );
