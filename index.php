@@ -32,6 +32,7 @@ require_once ML_AUTH_PLUGIN_DIR . 'includes/micuenta-page.php';
 // Inicializa el plugin.
 add_action( 'plugins_loaded', [ 'Auth_Handler', 'init' ] );
 
+
 // Hooks de activación y desactivación
 register_activation_hook(__FILE__, 'ml_wp_register_activate');
 register_deactivation_hook(__FILE__, 'ml_wp_disable_plugin');
@@ -44,6 +45,41 @@ function new_plugin_register_activate()
 function new_plugin_disable_plugin()
 {
 	$GLOBALS['ml_wp']->disablePlugin();
+}
+
+function custom_plugin_menu() {
+    add_menu_page(
+        'Custom Plugin',        // Page title
+        'Custom Plugin',        // Menu title
+        'manage_options',       // Capability
+        'custom-plugin',        // Menu slug
+        'custom_plugin_page',   // Function to display the page content
+        'dashicons-admin-plugins', // Icon (optional)
+        6                       // Position (optional)
+    );
+
+    // Add submenu page
+    add_submenu_page(
+        'custom-plugin',        // Parent slug
+        'Submenu Page',         // Page title
+        'Submenu',              // Menu title
+        'manage_options',       // Capability
+        'custom-plugin-submenu', // Submenu slug
+        'custom_plugin_submenu_page' // Function to display the submenu content
+    );
+}
+add_action('admin_menu', 'custom_plugin_menu');
+
+// Function to display the custom plugin main page
+function custom_plugin_page() {
+    echo '<h1>Custom Plugin Main Page</h1>';
+    echo '<p>Welcome to the main page of your custom plugin!</p>';
+}
+
+// Function to display the submenu page
+function custom_plugin_submenu_page() {
+    echo '<h1>Submenu Page</h1>';
+    echo '<p>Here is the submenu content.</p>';
 }
 
 // Caso 1 desde 0
