@@ -49,23 +49,23 @@ function new_plugin_disable_plugin()
 
 function custom_plugin_menu() {
     add_menu_page(
-        'Mercado Libre Sync',        // Page title
-        'Mercado Libre Sync',        // Menu title
-        'manage_options',       // Capability
-        'settings_page',        // Menu slug
-        'settings_page',   // Function to display the page content
-        'dashicons-admin-plugins', // Icon (optional)
-        6                       // Position (optional)
+        'Mercado Libre Sync', 
+        'Mercado Libre Sync', 
+        'manage_options', 
+        'settings_page', 
+        'settings_page', 
+        'dashicons-admin-plugins', 
+        6 
     );
 
-    // Add submenu page
+    // Corrected Parent Slug
     add_submenu_page(
-        'Mercado Libre Sync',        // Parent slug
-        'My Account',         // Page title
-        'Submenu',              // Menu title
-        'manage_options',       // Capability
-        'my_account', // Submenu slug
-        'my_account_page' // Function to display the submenu content
+        'settings_page', 
+        'My Account', 
+        'Submenu', 
+        'manage_options', 
+        'my_account', 
+        'my_account_page' 
     );
 }
 add_action('admin_menu', 'custom_plugin_menu');
@@ -90,8 +90,6 @@ function settings_page () { ?>
         <input type="submit" name="submit" id="submit" class="button button-primary" value="Guardar cambios">
     </form>
     </div>
-
-   
 
     <div class="wrap">
         <h1>Conectar con Mercado Libre</h1>
