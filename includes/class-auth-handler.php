@@ -37,15 +37,11 @@ class Auth_Handler {
         }
     }
 
-      // Función para intercambiar el código de autorización por un Access Token
       public static function get_access_token($authorization_code) {
-        // Obtén tu Client ID y Client Secret desde las opciones de configuración o de alguna otra forma
+        // Obtén tu Client ID y Client Secret desde las opciones de configuración 
         $client_id = get_option('ml_client_id');
         $client_secret = get_option('ml_client_secret');
         $redirect_uri = home_url(''); // Asegúrate de que esta URL sea la misma que configuraste
-
-        // // Asegúrate de tener un código de verificación PKCE (si es necesario)
-        // $code_verifier = 'TU_CODE_VERIFIER'; // Este es el código de verificación generado previamente
 
         // URL de la API de Mercado Libre para obtener el token
         $url = 'https://api.mercadolibre.com/oauth/token';

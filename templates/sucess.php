@@ -1,5 +1,4 @@
 <?php
-/* Template Name: Mercado Libre Success */
     get_header();
 ?>
 

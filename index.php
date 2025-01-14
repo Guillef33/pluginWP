@@ -46,7 +46,12 @@ function new_plugin_disable_plugin()
 	$GLOBALS['ml_wp']->disablePlugin();
 }
 
+// Caso 1 desde 0
 // add_action( 'publish_post', 'send_notification', 10, 2 );
+
+// Caso 2 desde sync 
+
+// add_action( 'sync_post', 'send_notification', 10, 2 );
 
 // function send_notification( $id, $post_obj ) {
 //     // Armar el mensaje
