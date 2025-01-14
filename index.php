@@ -49,7 +49,7 @@ function new_plugin_disable_plugin()
 
 function custom_plugin_menu() {
     add_menu_page(
-        'Mercado Libre Sync', 
+        'ML Sync', 
         'Mercado Libre Sync', 
         'manage_options', 
         'settings_page', 
