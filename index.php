@@ -61,7 +61,7 @@ function custom_plugin_menu() {
     add_submenu_page(
         'settings_page', 
         'My Account', 
-        'Submenu', 
+        'My Account', 
         'manage_options', 
         'my_account', 
         'my_account_page' 
