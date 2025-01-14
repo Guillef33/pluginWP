@@ -26,11 +26,12 @@ function ml_account_page_content() {
 
         <?php
         $access_token = Auth_Handler::handle_callback();
-        if ($access_token) {
+
             echo "El Access Token es: $access_token";
-        }
 
         ?>
+
+        <p><?php $access_token    ?></p>
 
     </div>
     <?php
