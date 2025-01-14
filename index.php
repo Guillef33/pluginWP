@@ -49,37 +49,91 @@ function new_plugin_disable_plugin()
 
 function custom_plugin_menu() {
     add_menu_page(
-        'Custom Plugin',        // Page title
-        'Custom Plugin',        // Menu title
+        'Mercado Libre Sync',        // Page title
+        'Mercado Libre Sync',        // Menu title
         'manage_options',       // Capability
-        'custom-plugin',        // Menu slug
-        'custom_plugin_page',   // Function to display the page content
+        'settings_page',        // Menu slug
+        'settings_page',   // Function to display the page content
         'dashicons-admin-plugins', // Icon (optional)
         6                       // Position (optional)
     );
 
     // Add submenu page
     add_submenu_page(
-        'custom-plugin',        // Parent slug
-        'Submenu Page',         // Page title
+        'my-account',        // Parent slug
+        'My Account',         // Page title
         'Submenu',              // Menu title
         'manage_options',       // Capability
-        'custom-plugin-submenu', // Submenu slug
-        'custom_plugin_submenu_page' // Function to display the submenu content
+        'my_account', // Submenu slug
+        'my_account_page' // Function to display the submenu content
     );
 }
 add_action('admin_menu', 'custom_plugin_menu');
 
 // Function to display the custom plugin main page
-function custom_plugin_page() {
-    echo '<h1>Custom Plugin Main Page</h1>';
-    echo '<p>Welcome to the main page of your custom plugin!</p>';
-}
+function settings_page () { ?>
+	<div class="wrap">
+        <h1>Ingresa tus credenciales</h1>
+        <form method="post" action="options.php">
+        <?php settings_fields('ml_settings_group'); ?>
+        <?php do_settings_sections('ml_settings_group'); ?>
+        <table class="form-table">
+            <tr valign="top">
+                <th scope="row">Client ID</th>
+                <td><input type="text" name="ml_client_id" value="<?php echo esc_attr(get_option('ml_client_id')); ?>" class="regular-text" /></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Client Secret</th>
+                <td><input type="password" name="ml_client_secret" value="<?php echo esc_attr(get_option('ml_client_secret')); ?>" class="regular-text" /></td>
+            </tr>
+        </table>
+        <input type="submit" name="submit" id="submit" class="button button-primary" value="Guardar cambios">
+    </form>
+    </div>
+
+   
+
+    <div class="wrap">
+        <h1>Conectar con Mercado Libre</h1>
+        <p>Haz clic en el siguiente botón para autenticarte con Mercado Libre:</p>
+        <a href="<?php echo esc_url( ml_get_auth_link() ); ?>" class="button button-primary">
+            Conectar con Mercado Libre
+        </a>
+
+        <?php 
+
+        $auth_url = Auth_Handler::get_auth_url();
+        if (!empty($auth_url)) {
+            echo "<p><strong>URL de autenticación:</strong> <a href='" . esc_url($auth_url) . "' target='_blank' style='color: #0073aa; text-decoration: underline;'>" . esc_html($auth_url) . "</a></p>";
+        } else {
+            echo "<p style='color: red;'>Error: No se pudo generar la URL de autenticación.</p>";
+        }
+        ?>
+
+    <div>
+        <a href="<?php echo esc_url( admin_url( 'admin.php?page=ml-admin' ) ); ?>" class="button button-primary">
+            Ver mi cuenta
+        </a>
+    </div>
+            
+      
+    </div>
+<?php }
 
 // Function to display the submenu page
-function custom_plugin_submenu_page() {
-    echo '<h1>Submenu Page</h1>';
-    echo '<p>Here is the submenu content.</p>';
+function my_account_page() {?>
+	<div class="wrap">
+			<h1>Mi Cuenta en Mercado Libre</h1>
+			<p>Aquí podrás ver los detalles de tu cuenta de Mercado Libre:</p>
+
+			<?php
+			$access_token = Auth_Handler::handle_callback();
+
+				echo "El Access Token es: $access_token";
+
+			?>
+	</div>
+<?php
 }
 
 // Caso 1 desde 0
