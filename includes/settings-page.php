@@ -1,6 +1,12 @@
 <?php
 add_action( 'admin_init', 'ml_register_settings' );
 
+
+function ml_register_settings() {
+    register_setting('ml_settings_group', 'ml_client_id');
+    register_setting('ml_settings_group', 'ml_client_secret');
+}
+
 // Function to display the custom plugin main page
 function settings_page () { ?>
 	<div class="wrap">
