@@ -22,6 +22,7 @@ function ml_account_page_content() {
         <h1>Mi Cuenta en Mercado Libre</h1>
         <p>Aquí podrás ver los detalles de tu cuenta de Mercado Libre:</p>
 
+
         <?php
         // Aquí llamamos a la función que obtiene los datos de la API de Mercado Libre
         $access_token = get_option('ml_access_token'); // Supongamos que tienes el access_token guardado en la base de datos
@@ -40,6 +41,9 @@ function ml_account_page_content() {
         //     echo '<p>No tienes un access token válido. Por favor, autentícate primero.</p>';
         // }
         ?>
+
+    <p class="access"><?= $access_token ?></p>
+
 
     </div>
     <?php
