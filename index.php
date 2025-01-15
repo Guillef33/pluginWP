@@ -14,10 +14,16 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  */
 
- // Include WordPress core files.
-if ( ! function_exists( 'add_action' ) ) {
-	require_once( ABSPATH . 'wp-load.php' );
-}
+//  if (!defined('ABSPATH')) {
+// 	die;
+// }	
+
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+
+// if ( ! function_exists( 'add_action' ) ) {
+// 	echo 'Hi there!  Im just a plugin, not much I can do when called directly.';
+// 	exit;
+// }
 
 // Define constantes.
 define( 'ML_AUTH_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
@@ -26,16 +32,45 @@ define( 'ML_AUTH_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 // Carga archivos necesarios.
 require_once ML_AUTH_PLUGIN_DIR . 'includes/class-auth-handler.php';
 require_once ML_AUTH_PLUGIN_DIR . 'includes/functions.php';
-require_once ML_AUTH_PLUGIN_DIR . 'includes/settings-page.php';
-require_once ML_AUTH_PLUGIN_DIR . 'includes/micuenta-page.php';
+require_once ML_AUTH_PLUGIN_DIR . 'templates/settings-page.php';
+require_once ML_AUTH_PLUGIN_DIR . 'templates/micuenta-page.php';
 
 // Inicializa el plugin.
 add_action( 'plugins_loaded', [ 'Auth_Handler', 'init' ] );
 
 
+
+class MercadoLibrePropiedades {
+	public function __construct() {
+		add_action('init', array($this, 'custom_post_type'));
+	}
+
+	function activate() {
+		$this->custom_post_type();
+		flush_rewrite_rules();
+	}
+
+	function deactivate() {
+		flush_rewrite_rules();
+	}
+
+	function uninstall() {
+		// delete CPT
+		// delete all the plugin data from the DB
+	}
+
+	function custom_post_type() {
+		register_post_type('propiedad', ['public' => true, 'label' => 'Propiedades']);
+	}
+}
+
+if (class_exists('MercadoLibrePropiedades')) {
+	$ml_wp = new MercadoLibrePropiedades();
+}
+
 // Hooks de activación y desactivación
-register_activation_hook(__FILE__, 'ml_wp_register_activate');
-register_deactivation_hook(__FILE__, 'ml_wp_disable_plugin');
+register_activation_hook(__FILE__, array($ml_wp, 'activate'));
+register_deactivation_hook(__FILE__, array($ml_wp, 'deactivate'));
 
 function new_plugin_register_activate()
 {

@@ -1,5 +1,4 @@
 <?php
-// Function to display the submenu page
 function my_account_page() {?>
 	<div class="wrap">
 			<h1>Mi Cuenta en Mercado Libre</h1>
