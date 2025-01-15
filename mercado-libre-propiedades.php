@@ -31,7 +31,7 @@ class MercadoLibrePropiedades {
 		// add_action('init', array($this, 'custom_post_type'));
 	}
 
-    function register () {
+    static function register () {
         add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue')); 
     }
 
@@ -57,7 +57,7 @@ class MercadoLibrePropiedades {
 		register_post_type('propiedad', ['public' => true, 'label' => 'Propiedades']);
 	}
 
-    function enqueue () {
+    static function enqueue () {
         wp_enqueue_style('ml_wp_style', plugins_url('assets/style.css', __FILE__));
         wp_enqueue_script( 'ml_wp_script', plugins_url('assets/app.js', __FILE__));
     }
