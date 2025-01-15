@@ -1,8 +1,9 @@
 <?php
 
 class Auth_Handler {
+
     public static function init() {
-        add_action( 'init', [ __CLASS__, 'handle_callback' ] );
+        add_action('init', array(__CLASS__, 'handle_callback'));
     }
 
     public static function get_auth_url() {
@@ -37,16 +38,14 @@ class Auth_Handler {
         }
     }
 
-      public static function get_access_token($authorization_code) {
+    public static function get_access_token($authorization_code) {
         // Obtén tu Client ID y Client Secret desde las opciones de configuración 
         $client_id = get_option('ml_client_id');
         $client_secret = get_option('ml_client_secret');
-        $redirect_uri = home_url(''); // Asegúrate de que esta URL sea la misma que configuraste
+        $redirect_uri = home_url(''); // URL de redirección
 
-        // URL de la API de Mercado Libre para obtener el token
         $url = 'https://api.mercadolibre.com/oauth/token';
 
-        // Datos del cuerpo de la solicitud POST
         $data = array(
             'grant_type' => 'authorization_code',
             'client_id' => $client_id,
@@ -56,10 +55,8 @@ class Auth_Handler {
             // 'code_verifier' => $code_verifier
         );
 
-        // Iniciar una sesión cURL
         $ch = curl_init();
 
-        // Configuración cURL para la solicitud POST
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -69,20 +66,16 @@ class Auth_Handler {
             'Content-Type: application/x-www-form-urlencoded'
         ));
 
-        // Ejecutar la solicitud cURL y obtener la respuesta
         $response = curl_exec($ch);
 
-        // Verificar si hubo un error con la solicitud cURL
         if (curl_errno($ch)) {
             error_log('Error en la solicitud cURL: ' . curl_error($ch));
             curl_close($ch);
             return null;
         }
 
-        // Cerrar la sesión de cURL
         curl_close($ch);
 
-        // Decodificar la respuesta JSON de Mercado Libre
         $response_data = json_decode($response, true);
 
         // Verificar si se recibió un access token

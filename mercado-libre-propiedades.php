@@ -28,8 +28,16 @@ add_action( 'plugins_loaded', [ 'Auth_Handler', 'init' ] );
 
 class MercadoLibrePropiedades {
 	public function __construct() {
-		add_action('init', array($this, 'custom_post_type'));
+		// add_action('init', array($this, 'custom_post_type'));
 	}
+
+    function register () {
+        add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue')); 
+    }
+
+    function create_post_type () {
+        add_action('init', array($this, 'custom_post_type'));
+    }
 
 	function activate() {
 		$this->custom_post_type();
@@ -40,24 +48,30 @@ class MercadoLibrePropiedades {
 		flush_rewrite_rules();
 	}
 
-	function uninstall() {
-		// delete CPT
-		// delete all the plugin data from the DB
-	}
+	// function uninstall() {
+	// 	// delete CPT
+	// 	// delete all the plugin data from the DB
+	// }
 
-	static function custom_post_type() {
+	function custom_post_type() {
 		register_post_type('propiedad', ['public' => true, 'label' => 'Propiedades']);
 	}
+
+    function enqueue () {
+        wp_enqueue_style('ml_wp_style', plugins_url('assets/style.css', __FILE__));
+        wp_enqueue_script( 'ml_wp_script', plugins_url('assets/app.js', __FILE__));
+    }
 }
 
 if (class_exists('MercadoLibrePropiedades')) {
 	$ml_wp = new MercadoLibrePropiedades();
+    $ml_wp->register();
 }
 
 // Hooks de activación y desactivación
 register_activation_hook(__FILE__, array($ml_wp, 'activate'));
 register_deactivation_hook(__FILE__, array($ml_wp, 'deactivate'));
-register_uninstall_hook(__FILE__, array($ml_wp, 'uninstall'));
+// register_uninstall_hook(__FILE__, array($ml_wp, 'uninstall'));
 
 
 
