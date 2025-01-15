@@ -1,3 +1,6 @@
+<h1>Test Settings</h1>
+
+
 <?php
 function my_account_page() {?>
 	<div class="wrap">
