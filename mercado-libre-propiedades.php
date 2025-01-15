@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Name:       Tus propiedades en Mercado Libre
  * Plugin URI:        https://magnetitte.com/mercado-libre-wordpress/
