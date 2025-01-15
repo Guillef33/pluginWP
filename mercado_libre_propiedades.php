@@ -30,12 +30,12 @@ class MercadoLibrePropiedades {
 		// add_action('init', array($this, 'custom_post_type'));
 	}
 
-    static function register () {
+    public static function register () {
         add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue')); 
         add_action('admin_menu', array(__CLASS__, 'add_admin_pages'));
     }
 
-    function add_admin_pages() {
+    public static function add_admin_pages() {
         add_menu_page(
             'Mercado Libre Sync', 
             'Meli Sync', 
