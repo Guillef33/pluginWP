@@ -52,16 +52,16 @@ class MercadoLibrePropiedades {
             'My Account', 
             'manage_options', 
             'my_account', 
-            'my_account_page' 
+            array(__CLASS__, 'my_account_page')
         );
     }
 
     public static function settings_page () {
-        require_once ML_AUTH_PLUGIN_DIR . 'templates/settings_page.php';
+        require_once ML_AUTH_PLUGIN_DIR . 'templates/settings-page.php';
     }
 
     public static function my_account_page  () {
-        require_once ML_AUTH_PLUGIN_DIR . 'templates/my_account_page.php';
+        require_once ML_AUTH_PLUGIN_DIR . 'templates/my-account-page.php';
     }
 
     function create_post_type () {
