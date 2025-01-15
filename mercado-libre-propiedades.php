@@ -11,16 +11,7 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  */
 
-//  if (!defined('ABSPATH')) {
-// 	die;
-// }	
-
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
-
-// if ( ! function_exists( 'add_action' ) ) {
-// 	echo 'Hi there!  Im just a plugin, not much I can do when called directly.';
-// 	exit;
-// }
 
 // Define constantes.
 define( 'ML_AUTH_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
@@ -34,8 +25,6 @@ require_once ML_AUTH_PLUGIN_DIR . 'templates/micuenta-page.php';
 
 // Inicializa el plugin.
 add_action( 'plugins_loaded', [ 'Auth_Handler', 'init' ] );
-
-
 
 class MercadoLibrePropiedades {
 	public function __construct() {
@@ -56,7 +45,7 @@ class MercadoLibrePropiedades {
 		// delete all the plugin data from the DB
 	}
 
-	function custom_post_type() {
+	static function custom_post_type() {
 		register_post_type('propiedad', ['public' => true, 'label' => 'Propiedades']);
 	}
 }
@@ -68,16 +57,10 @@ if (class_exists('MercadoLibrePropiedades')) {
 // Hooks de activación y desactivación
 register_activation_hook(__FILE__, array($ml_wp, 'activate'));
 register_deactivation_hook(__FILE__, array($ml_wp, 'deactivate'));
+register_uninstall_hook(__FILE__, array($ml_wp, 'uninstall'));
 
-function new_plugin_register_activate()
-{
-	update_option('_ml_wp_execute_activate', 1);
-}
 
-function new_plugin_disable_plugin()
-{
-	$GLOBALS['ml_wp']->disablePlugin();
-}
+
 
 function custom_plugin_menu() {
     add_menu_page(
@@ -100,49 +83,6 @@ function custom_plugin_menu() {
     );
 }
 add_action('admin_menu', 'custom_plugin_menu');
-
-
-
-// Caso 1 desde 0
-// add_action( 'publish_post', 'send_notification', 10, 2 );
-
-// Caso 2 desde sync 
-
-// add_action( 'sync_post', 'send_notification', 10, 2 );
-
-// function send_notification( $id, $post_obj ) {
-//     // Armar el mensaje
-//     $msg = 'Se ha publicado un nuevo post: ';
-//     $msg .= '<strong>' . esc_html( $post_obj->post_title ) . '</strong><br>';
-//     $msg .= '<p>' . esc_html( wp_trim_words( $post_obj->post_content, 20, '...' ) ) . '</p>'; 
-//     $msg .= '<p>' . esc_html( wp_trim_words( $post_obj->post_author, 20, '...' ) ) . '</p>'; 
-//     $msg .= '<p>' . esc_html( wp_trim_words( $post_obj->post_date, 20, '...' ) ) . '</p>'; 
-//     $msg .= '<p>' . esc_html( wp_trim_words( $post_obj->post_status, 20, '...' ) ) . '</p>'; 
-
-
-//     // Guardar el mensaje en las opciones de WordPress
-//     update_option( 'mi_plugin_notificacion', $msg );
-// }
-
-// /**
-//  * Mostrar la notificación en la home
-//  */
-// function display_notification_on_home() {
-//     // Verificar si estamos en la home
-//     if ( is_front_page() ) {
-//         // Obtener el mensaje almacenado
-//         $msg = get_option( 'mi_plugin_notificacion' );
-
-//         // Mostrar el mensaje si existe
-//         if ( $msg ) {
-//             echo '<div style="background-color: #f9f9f9; border: 1px solid #ccc; padding: 10px; margin: 20px 0;">';
-//             echo '<h3>Notificación:</h3>';
-//             echo wp_kses_post( $msg );
-//             echo '</div>';
-//         }
-//     }
-// }
-// add_action( 'wp_footer', 'display_notification_on_home' );
 
 
 
