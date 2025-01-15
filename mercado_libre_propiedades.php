@@ -41,7 +41,7 @@ class MercadoLibrePropiedades {
             'Meli Sync', 
             'manage_options', 
             'settings_page', 
-            array($this, 'settings_page'), 
+            array(__CLASS__, 'settings_page'), 
             'dashicons-external', 
             20
         );
