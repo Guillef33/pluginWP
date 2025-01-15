@@ -13,15 +13,14 @@
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-// Define constantes.
 define( 'ML_AUTH_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ML_AUTH_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 // Carga archivos necesarios.
 require_once ML_AUTH_PLUGIN_DIR . 'includes/class-auth-handler.php';
 require_once ML_AUTH_PLUGIN_DIR . 'includes/functions.php';
-require_once ML_AUTH_PLUGIN_DIR . 'templates/settings-page.php';
-require_once ML_AUTH_PLUGIN_DIR . 'templates/micuenta-page.php';
+// require_once ML_AUTH_PLUGIN_DIR . 'templates/settings-page.php';
+// require_once ML_AUTH_PLUGIN_DIR . 'templates/micuenta-page.php';
 
 // Inicializa el plugin.
 add_action( 'plugins_loaded', [ 'Auth_Handler', 'init' ] );
@@ -33,6 +32,36 @@ class MercadoLibrePropiedades {
 
     static function register () {
         add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue')); 
+        add_action('admin_menu', array(__CLASS__, 'add_admin_pages'));
+    }
+
+    function add_admin_pages() {
+        add_menu_page(
+            'Mercado Libre Sync', 
+            'Meli Sync', 
+            'manage_options', 
+            'settings_page', 
+            array($this, 'settings_page'), 
+            'dashicons-external', 
+            20
+        );
+    
+        add_submenu_page(
+            'settings_page', 
+            'My Account', 
+            'My Account', 
+            'manage_options', 
+            'my_account', 
+            'my_account_page' 
+        );
+    }
+
+    function settings_page () {
+        require_once ML_AUTH_PLUGIN_DIR . 'templates/settings_page.php';
+    }
+
+    function my_account_page  () {
+        require_once ML_AUTH_PLUGIN_DIR . 'templates/my_account_page.php';
     }
 
     function create_post_type () {
@@ -47,11 +76,6 @@ class MercadoLibrePropiedades {
 	function deactivate() {
 		flush_rewrite_rules();
 	}
-
-	// function uninstall() {
-	// 	// delete CPT
-	// 	// delete all the plugin data from the DB
-	// }
 
 	function custom_post_type() {
 		register_post_type('propiedad', ['public' => true, 'label' => 'Propiedades']);
@@ -71,32 +95,9 @@ if (class_exists('MercadoLibrePropiedades')) {
 // Hooks de activación y desactivación
 register_activation_hook(__FILE__, array($ml_wp, 'activate'));
 register_deactivation_hook(__FILE__, array($ml_wp, 'deactivate'));
-// register_uninstall_hook(__FILE__, array($ml_wp, 'uninstall'));
 
 
 
-
-function custom_plugin_menu() {
-    add_menu_page(
-        'Mercado Libre Sync', 
-        'ML Sync', 
-        'manage_options', 
-        'settings_page', 
-        'settings_page', 
-        'dashicons-admin-plugins', 
-        6 
-    );
-
-    add_submenu_page(
-        'settings_page', 
-        'My Account', 
-        'My Account', 
-        'manage_options', 
-        'my_account', 
-        'my_account_page' 
-    );
-}
-add_action('admin_menu', 'custom_plugin_menu');
 
 
 
